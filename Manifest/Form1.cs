@@ -14,7 +14,7 @@ namespace Manifest
 {
     public partial class Form1 : Form
     {
-        private int gridCoulums = 0;
+        private int gridRows = 0;
         private string path = null;
 
         public Form1()
@@ -24,9 +24,14 @@ namespace Manifest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            updatedValuesGrid.RowCount = 3;
+            updatedValuesGrid.ColumnCount = 3;
+            updatedValuesGrid.Columns[0].HeaderText = "Max duration";
+            updatedValuesGrid.Columns[1].HeaderText = "Max mark";
+            updatedValuesGrid.Columns[2].HeaderText = "Pass mark";
+            updatedValuesGrid.RowHeadersWidth = 50;
+
             gridUpdate();
-            directoryInfo.Text = Export.GetPath();
+            directoryInfo.Text = Export.loadPath();
         }
 
         private void generateButton_Click(object sender, EventArgs e)
@@ -64,65 +69,67 @@ namespace Manifest
 
         private void defaultMaxDurationApply_Click(object sender, EventArgs e)
         {
-            gridRowUpdate(0, maxDuration.Text.Trim());
+            gridColumnUpdate(0, maxDuration.Text.Trim());
         }
 
         private void defaultMaxMarkApply_Click(object sender, EventArgs e)
         {
-            gridRowUpdate(1, maxMark.Text.Trim());
+            gridColumnUpdate(1, maxMark.Text.Trim());
 
         }
 
         private void defaultPassMarkApply_Click(object sender, EventArgs e)
         {
-            gridRowUpdate(2, passMark.Text.Trim());
+            gridColumnUpdate(2, passMark.Text.Trim());
 
         }
         private void browseDirectory_Click(object sender, EventArgs e)
         {
-            Export.selectPath();
+            Export.selectPath(true);
             directoryInfo.Text = Export.GetPath();
         }
 
         private string[,] gridToArray() 
         {
-            string[,] dataArray = new string[updatedValuesGrid.ColumnCount, updatedValuesGrid.RowCount];
+            string[,] dataArray = new string[updatedValuesGrid.RowCount, updatedValuesGrid.ColumnCount];
             for(int i = 0;i < updatedValuesGrid.ColumnCount; i++) 
             {
                 for(int j = 0; j < updatedValuesGrid.RowCount; j++) 
                 {
-                    dataArray[i, j] = updatedValuesGrid[i, j].Value.ToString().Trim();
+                    dataArray[j, i] = updatedValuesGrid[i, j].Value.ToString().Trim();
                 }
             }
             return dataArray;
         } 
 
-        private void gridRowUpdate(int row, string value) 
+        private void gridColumnUpdate(int column, string value) 
         {
-            for (int i = 0; i < updatedValuesGrid.ColumnCount; i++)
+            for (int i = 0; i < updatedValuesGrid.RowCount; i++)
             {
-                updatedValuesGrid[i,row].Value = value;
+                updatedValuesGrid[column, i].Value = value;
             }
         }
 
         private void gridUpdate()
         {
-            updatedValuesGrid.ColumnCount = (int)scenCount.Value + 1;
+            updatedValuesGrid.RowCount = (int)scenCount.Value + 1;
 
-            if (updatedValuesGrid.ColumnCount > gridCoulums)
+            if (updatedValuesGrid.RowCount > gridRows)
             {
-                int lastColumnIndex = updatedValuesGrid.ColumnCount - 1;
-                updatedValuesGrid[lastColumnIndex, 0].Value = maxDuration.Text.Trim();
-                updatedValuesGrid[lastColumnIndex, 1].Value = maxMark.Text.Trim();
-                updatedValuesGrid[lastColumnIndex, 2].Value = passMark.Text.Trim();
+                int lastRowIndex = updatedValuesGrid.RowCount - 1;
+                updatedValuesGrid[0, lastRowIndex].Value = maxDuration.Text.Trim();
+                updatedValuesGrid[1, lastRowIndex].Value = maxMark.Text.Trim();
+                updatedValuesGrid[2, lastRowIndex].Value = passMark.Text.Trim();
 
             }
 
-            gridCoulums = updatedValuesGrid.ColumnCount;
+            gridRows = updatedValuesGrid.RowCount;
 
-            for (int i = 0; i < updatedValuesGrid.Columns.Count; i++)
+            for (int i = 0; i < updatedValuesGrid.Rows.Count; i++)
             {
-                updatedValuesGrid.Columns[i].HeaderText = "Scene " + i;
+                DataGridViewRowHeaderCell cell = updatedValuesGrid.Rows[i].HeaderCell;
+                cell.Value = "S"+(i + 1).ToString();
+                updatedValuesGrid.Rows[i].HeaderCell = cell;
             }
         }
 

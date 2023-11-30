@@ -108,9 +108,9 @@
             this.updatedValuesGrid.AllowUserToResizeRows = false;
             this.updatedValuesGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.updatedValuesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.updatedValuesGrid.Location = new System.Drawing.Point(313, 16);
+            this.updatedValuesGrid.Location = new System.Drawing.Point(351, 12);
             this.updatedValuesGrid.Name = "updatedValuesGrid";
-            this.updatedValuesGrid.Size = new System.Drawing.Size(418, 91);
+            this.updatedValuesGrid.Size = new System.Drawing.Size(321, 143);
             this.updatedValuesGrid.TabIndex = 8;
             // 
             // labelMaxDuration
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 226);
+            this.ClientSize = new System.Drawing.Size(696, 212);
             this.Controls.Add(this.directoryInfo);
             this.Controls.Add(this.browseDirectory);
             this.Controls.Add(this.defaultPassMarkApply);

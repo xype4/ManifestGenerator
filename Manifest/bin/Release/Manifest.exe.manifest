@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Manifest.exe" size="16352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Manifest.exe" size="17888">
       <assemblyIdentity name="Manifest" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0TxbRxU1m/meqzqnxM7zmj+Wp1DqqW75/uYPZJxe4As=</dsig:DigestValue>
+        <dsig:DigestValue>5HkN5jkHqmLle3H35a++WG/9G4x2zu0vN3cntRJNBsM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
