@@ -25,26 +25,27 @@ namespace Manifest
             SceneNumber = sceneNumber;
             LearningMode = learningMode;
         }
-
+        
         public string getJson()
         {
-            string jsonOut = "{\n";
+            string jsonOut = "[\n";
 
+            jsonOut += getJsonLine(nameof(LearningMode), LearningMode, false);
             jsonOut += getJsonLine(nameof(MaxDuration), MaxDuration, false);
-            jsonOut += getJsonLine(nameof(MaxMark), MaxMark, false);
             jsonOut += getJsonLine(nameof(PassMark), PassMark, false);
+            jsonOut += getJsonLine(nameof(MaxMark), MaxMark, false);
             jsonOut += getJsonLine(nameof(Mode), Mode, false);
-            jsonOut += getJsonLine(nameof(SceneNumber), SceneNumber, false);
-            jsonOut += getJsonLine(nameof(LearningMode), LearningMode, true);
+            jsonOut += getJsonLine(nameof(SceneNumber), SceneNumber, true);
 
-            jsonOut += "}";
+            jsonOut += "]";
 
             return jsonOut;
         }
 
         private string getJsonLine(string name, int parametr, bool last) 
         {
-            string output = "\t\"" + name + "\": " + parametr.ToString();
+            string output = "{ \"id\": \"" + name + "\", \"type\": \"hiddenInput\", \"value\": " + parametr.ToString()+"}";
+
             if (last)
                 output += "\n";
             else
@@ -54,7 +55,7 @@ namespace Manifest
 
         private string getJsonLine(string name, string parametr, bool last)
         {
-            string output = "\t\"" + name + "\": \"" + parametr.ToString() + "\"";
+            string output = "{ \"id\": \"" + name + "\", \"type\": \"hiddenInput\", \"value\": \"" + parametr.ToString() + "\"}";
             if (last)
                 output += "\n";
             else
